@@ -21,12 +21,15 @@ export class AppComponent {
       return;
     }
       
-
-    this.endeServ.getEndereco(formulario.form.value.zipcode).subscribe(endereco => {
+    let zipcode = formulario.form.value.zipcode.replace('-', '');
+    
+    this.endeServ.getEndereco(zipcode)
+    .subscribe(endereco => {
       this.endereco = endereco;
       this.tem_endereco = true;
       console.log(this.endereco);
-    });
+    },
+    () => alert("CEP incorreto, corrija por favor!"));
   
     console.log(formulario.form.value);
   }
