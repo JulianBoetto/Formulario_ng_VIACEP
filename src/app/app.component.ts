@@ -13,8 +13,11 @@ export class AppComponent {
   constructor(private endeServ: EnderecoService) {}
 
   onSubmit(formulario: any) {
-    if(formulario.form.status == 'INVALID')
-      alert('FOmulário inválido! Os dados estão incorretos!');
+    if(formulario.form.status == 'INVALID') {
+      alert('Formulário inválido! Os dados estão incorretos!');
+      return;
+    }
+      
 
     this.endeServ.getEndereco(formulario.form.value.zipcode).subscribe(endereco => {
       this.endereco = endereco;
